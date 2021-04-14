@@ -39,6 +39,12 @@ variable "public_key" {
 # OPTIONAL MODULE PARAMETERS
 # These variables have defaults, but may be overridden by the operator.
 # ---------------------------------------------------------------------------------------------------------------------
+variable "create_iam_resources" {
+  description = "Flag to enable the creation of cross-region IAM resources."
+  type        = bool
+  default     = false
+}
+
 variable "global_tags" {
   description = "The tags to apply to all resources."
   type        = map(string)
