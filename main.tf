@@ -1,6 +1,6 @@
 module "citrix_adc" {
   source  = "terraform.hylandcloud.com/Hyland-GCS/citrix-adc/aws"
-  version = "0.3.4"
+  version = "0.3.5"
 
   ami_id                       = local.ami_ids[var.aws_region]
   availability_zones           = var.availability_zones
