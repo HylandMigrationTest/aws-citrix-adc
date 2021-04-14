@@ -1,6 +1,4 @@
 locals {
-  management_subnet_ids = list(data.aws_subnet.management_a.id, data.aws_subnet.management_b.id)
-
   ami_ids = {
     "us-west-2"      = "ami-0503d15aed657c87d"
     "us-west-1"      = "ami-0707f52c208d83427"
@@ -19,4 +17,11 @@ locals {
     "ap-northeast-2" = "ami-0ad520c016e96f260"
     "ap-northeast-1" = "ami-0a5d628c2e1ea45e9"
   }
+
+  sophos_cidr         = [for ip in data.aws_instances.sophos.private_ips : "${ip}/32"]
+  postfix_cidr        = [for ip in data.aws_instances.postfix.private_ips : "${ip}/32"]
+  hostmon_cidr        = [for ip in data.aws_instances.hostmon.private_ips : "${ip}/32"]
+  splunk_indexer_cidr = [for ip in data.aws_instances.splunk_indexers.private_ips : "${ip}/32"]
+  splunk_master_cidr  = [for ip in data.aws_instances.splunk_masters.private_ips : "${ip}/32"]
+  splunk_loghost_cidr = [for ip in data.aws_instances.splunk_loghosts.private_ips : "${ip}/32"]
 }

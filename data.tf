@@ -5,16 +5,38 @@ data "aws_vpc" "ss" {
   }
 }
 
-data "aws_subnet" "management_a" {
-  filter {
-    name   = "tag:Name"
-    values = [var.management_subnet_names[0]]
+data "aws_instances" "sophos" {
+  instance_tags = {
+    "hyl:infra:type" = "SophosUTM"
   }
 }
 
-data "aws_subnet" "management_b" {
-  filter {
-    name   = "tag:Name"
-    values = [var.management_subnet_names[1]]
+data "aws_instances" "postfix" {
+  instance_tags = {
+    "hyl:infra:type" = "postfix"
+  }
+}
+
+data "aws_instances" "hostmon" {
+  instance_tags = {
+    "hyl:infra:type" = "hostmon"
+  }
+}
+
+data "aws_instances" "splunk_indexers" {
+  instance_tags = {
+    "hyl:infra:type" = "splunk:indexer"
+  }
+}
+
+data "aws_instances" "splunk_masters" {
+  instance_tags = {
+    "hyl:infra:type" = "splunk:master"
+  }
+}
+
+data "aws_instances" "splunk_loghosts" {
+  instance_tags = {
+    "hyl:infra:type" = "splunk:loghost"
   }
 }
