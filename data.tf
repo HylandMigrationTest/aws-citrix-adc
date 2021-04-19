@@ -5,6 +5,18 @@ data "aws_vpc" "vpc" {
   }
 }
 
+data "aws_security_group" "vpc" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.vpc.id]
+  }
+
+  filter {
+    name   = "group-name"
+    values = ["default"]
+  }
+}
+
 data "aws_instances" "sophos" {
   instance_tags = {
     "hyl:infra:type" = "SophosUTM"
