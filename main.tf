@@ -1,6 +1,6 @@
 module "citrix_adc" {
   source  = "terraform.hylandcloud.com/Hyland-GCS/citrix-adc/aws"
-  version = "0.3.7"
+  version = "0.4.2"
 
   ami_id                       = local.ami_ids[var.aws_region]
   availability_zones           = var.availability_zones
@@ -15,7 +15,7 @@ module "citrix_adc" {
   management_private_ips_count = var.management_private_ips_count
   management_subnet_ids        = var.management_subnet_ids
   public_key                   = var.public_key
-  vpc_id                       = data.aws_vpc.ss.id
+  vpc_id                       = data.aws_vpc.vpc.id
 
   root_block_device = {
     volume_size = var.root_volume_size

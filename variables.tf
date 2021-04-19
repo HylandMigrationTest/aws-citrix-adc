@@ -99,7 +99,7 @@ variable "instance_type" {
 variable "management_private_ips_count" {
   description = "The number of secondary private IPs for the Management Interface."
   type        = number
-  default     = 2
+  default     = 1
 }
 
 variable "ocdeploy_external_cidr" {
@@ -141,5 +141,5 @@ variable "view_cidr" {
 variable "vpc_name" {
   description = "The name of the VPC to use for all resources."
   type        = string
-  default     = "ss"
+  default     = "ns"
 }
