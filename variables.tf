@@ -40,14 +40,14 @@ variable "ivanti_security_group_id" {
   type        = string
 }
 
-variable "subnet_ids" {
-  description = "The list of subnet IDs to use for the EC2 Instance(s) and Management Network."
-  type        = list(string)
-}
-
 variable "public_key" {
   description = "The public key for the instance(s)."
   type        = string
+}
+
+variable "subnet_ids" {
+  description = "The list of subnet IDs for the instance(s)."
+  type        = list(string)
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -94,12 +94,6 @@ variable "instance_type" {
   description = "The size (type) for the instance(s)."
   type        = string
   default     = "m5.large"
-}
-
-variable "management_private_ips_count" {
-  description = "The number of secondary private IPs for the Management Interface."
-  type        = number
-  default     = 0
 }
 
 variable "ocdeploy_external_cidr" {
