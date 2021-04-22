@@ -69,7 +69,7 @@ variable "certificate_authority_cidr" {
 variable "client_private_ips_count" {
   description = "The number of secondary private IPs for the Client Interface."
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "create_iam_resources" {
@@ -99,7 +99,7 @@ variable "instance_type" {
 variable "management_private_ips_count" {
   description = "The number of secondary private IPs for the Management Interface."
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "ocdeploy_external_cidr" {
