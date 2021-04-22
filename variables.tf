@@ -40,8 +40,8 @@ variable "ivanti_security_group_id" {
   type        = string
 }
 
-variable "management_subnet_ids" {
-  description = "The list of subnet IDs to use for the Management Network."
+variable "subnet_ids" {
+  description = "The list of subnet IDs to use for the EC2 Instance(s) and Management Network."
   type        = list(string)
 }
 
