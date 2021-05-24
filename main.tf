@@ -1,10 +1,9 @@
 module "citrix_adc" {
   source  = "terraform.hylandcloud.com/Hyland-GCS/citrix-adc/aws"
-  version = "0.8.4"
+  version = "0.9.0"
 
   ami_id                        = local.ami_ids[var.aws_region]
   availability_zones            = var.availability_zones
-  aws_region                    = var.aws_region
   client_private_ips_count      = var.client_private_ips_count
   client_subnet_ids             = var.client_subnet_ids
   create_iam_resources          = var.create_iam_resources
@@ -13,18 +12,22 @@ module "citrix_adc" {
   instance_count                = var.instance_count
   instance_type                 = var.instance_type
   public_key                    = var.public_key
+  splunk_deployment_cidr_blocks = var.splunk_deployment_server_cidr
+  splunk_indexer_cidr_blocks    = local.splunk_indexer_cidr
+  splunk_loghost_cidr_blocks    = local.splunk_loghost_cidr
+  splunk_master_cidr_blocks     = local.splunk_master_cidr
   subnet_ids                    = var.subnet_ids
   vpc_id                        = data.aws_vpc.vpc.id
   vpc_security_group_id         = data.aws_security_group.vpc.id
-  splunk_indexer_cidr_blocks    = local.splunk_indexer_cidr
-  splunk_master_cidr_blocks     = local.splunk_master_cidr
-  splunk_loghost_cidr_blocks    = local.splunk_loghost_cidr
-  splunk_deployment_cidr_blocks = var.splunk_deployment_server_cidr
 
   root_block_device = {
     volume_size = var.root_volume_size
     volume_type = var.root_volume_type
     encrypted   = true
+  }
+
+  providers = {
+    aws = aws
   }
 }
 
