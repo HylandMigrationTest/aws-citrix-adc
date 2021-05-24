@@ -1,6 +1,6 @@
 module "citrix_adc" {
   source  = "terraform.hylandcloud.com/Hyland-GCS/citrix-adc/aws"
-  version = "0.7.0"
+  version = "0.8.0"
 
   ami_id                   = local.ami_ids[var.aws_region]
   availability_zones       = var.availability_zones
@@ -16,6 +16,10 @@ module "citrix_adc" {
   subnet_ids               = var.subnet_ids
   vpc_id                   = data.aws_vpc.vpc.id
   vpc_security_group_id    = data.aws_security_group.vpc.id
+  splunk_indexer_cidr_blocks           = local.splunk_indexer_cidr
+  splunk_master_cidr_blocks            = local.splunk_master_cidr
+  splunk_loghost_cidr_blocks           = local.splunk_loghost_cidr
+  splunk_deployment_server_cidr_blocks = var.splunk_deployment_server_cidr
 
   root_block_device = {
     volume_size = var.root_volume_size
@@ -43,8 +47,4 @@ module "default_security_group_rules" {
   default_postfix_cidr_blocks                  = local.postfix_cidr
   default_hostmon_cidr_blocks                  = local.hostmon_cidr
   default_certificate_authority_cidr_blocks    = var.certificate_authority_cidr
-  default_splunk_indexer_cidr_blocks           = local.splunk_indexer_cidr
-  default_splunk_master_cidr_blocks            = local.splunk_master_cidr
-  default_splunk_loghost_cidr_blocks           = local.splunk_loghost_cidr
-  default_splunk_deployment_server_cidr_blocks = var.splunk_deployment_server_cidr
 }
