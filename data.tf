@@ -37,18 +37,18 @@ data "aws_instances" "hostmon" {
 
 data "aws_instances" "splunk_indexers" {
   instance_tags = {
-    "hyl:infra:type" = "splunk:indexer"
+    "hyl:spunk:type" = "indexer"
   }
 }
 
 data "aws_instances" "splunk_masters" {
   instance_tags = {
-    "hyl:infra:type" = "splunk:master"
+    "hyl:splunk:type" = "master_node"
   }
 }
 
 data "aws_instances" "splunk_loghosts" {
   instance_tags = {
-    "hyl:infra:type" = "splunk:loghost"
+    "hyl:splunk:type" = "loghost"
   }
 }
