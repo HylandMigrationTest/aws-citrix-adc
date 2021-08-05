@@ -37,7 +37,7 @@ data "aws_instances" "hostmon" {
 
 data "aws_instances" "splunk_indexers" {
   instance_tags = {
-    "hyl:spunk:type" = "indexer"
+    "hyl:splunk:type" = "indexer"
   }
 }
 
